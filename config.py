@@ -31,4 +31,3 @@ class Local(object):
         self.db_ip = '127.0.0.1'
         self.db_port = '6379'
         self.db_number = 10
-        
