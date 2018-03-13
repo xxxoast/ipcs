@@ -1,4 +1,4 @@
-from __future__ import absolute_import,unicode_literals
+#from __future__ import absolute_import,unicode_literals
 from task import add
 from ipcs.task import add,non_certify
 from misc import unicode2str_r,unicode2utf8_r,unicode2cp936_r

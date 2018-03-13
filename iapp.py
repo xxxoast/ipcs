@@ -1,8 +1,11 @@
 # -*- coding:utf-8 -*- 
-from __future__ import absolute_import,unicode_literals
-import sys
-if ".." not in sys.path:
-    sys.path.append("..")
+#from __future__ import absolute_import,unicode_literals
+import os,sys
+pkg_path = os.path.sep.join(
+    (os.path.abspath(os.curdir).split(os.path.sep)[:-1]))
+if pkg_path not in sys.path:
+    sys.path.append(pkg_path)
+    
 from celery import Celery
 from ipcs.config import Remote,Local
 
