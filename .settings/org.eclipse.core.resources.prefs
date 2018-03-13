@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding/config.py=utf-8
+encoding/iapp.py=utf-8
+encoding/redis_api.py=utf-8
+encoding/tasks.py=utf-8

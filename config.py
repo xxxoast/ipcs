@@ -1,4 +1,4 @@
-#encoding : utf-8
+# -*- coding:utf-8 -*- 
 
 class Remote(object):
     def __init__(self):

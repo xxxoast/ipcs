@@ -1,5 +1,8 @@
+# -*- coding:utf-8 -*- 
 
 from iapp import app
+
+
 
 @app.task
 def add(x, y):

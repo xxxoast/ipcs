@@ -1,2 +1,2 @@
 #celery -A celery worker --loglevel=info
-celery -A ipcs worker -l info
+celery -A iapp worker -l info
