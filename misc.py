@@ -1,17 +1,8 @@
 # encoding : utf-8
+from __future__ import absolute_import,unicode_literals
 
-unicode2utf8 = lambda x: x.encode('utf8') if isinstance(x,unicode) else x
-
-def unicode2str_r(obj):
-    if isinstance(obj, dict):
-        new_dict = {}
-        for k, v in obj.iteritems():
-            new_dict[unicode2str_r(k)] = unicode2str_r(v)
-        return new_dict
-    elif isinstance(obj, list):
-        new_list = [unicode2str_r(i) for i in obj]
-        return new_list
-    elif isinstance(obj, unicode):
-        return str(obj)
-    else:
-        return obj
+import sys
+if ".." not in sys.path:
+    sys.path.append("..")
+from inspect_toolkit.utils import unicode2cp936,unicode2utf8,unicode2cp936_r,unicode2utf8_r,unicode2str_r
+    
