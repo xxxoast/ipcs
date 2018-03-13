@@ -1,5 +1,8 @@
 # -*- coding:utf-8 -*- 
 
+import sys
+if ".." not in sys.path:
+    sys.path.append("..")
 from celery import Celery
 from config import Remote,Local
 
@@ -13,7 +16,7 @@ db_protcol,db_user,db_password,db_ip,db_port,db_number = proxy.db_protcol,proxy.
 s_broker = '{0}://{1}:{2}@{3}:{4}/{5}'.format(broker_protcol,broker_user,broker_password,broker_ip,broker_port,broker_vhost)
 s_backend = '{0}://{1}:{2}@{3}:{4}/{5}'.format(db_protcol,db_user,db_password,db_ip,db_port,db_number)
 
-app = Celery('iapp', backend = s_backend, broker= s_broker, include = ['tasks'])
+capp = Celery('iapp', backend = s_backend, broker= s_broker, include = ['tasks'])
 
 if __name__ == '__main__':
-    app.start()
+    capp.start()

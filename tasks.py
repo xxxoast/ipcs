@@ -1,19 +1,15 @@
 # -*- coding:utf-8 -*- 
 
-from iapp import app
+import sys
+if ".." not in sys.path:
+    sys.path.append("..")
+from inspect_toolkit.algorithm import search
+from iapp import capp
 
-
-
-@app.task
+@capp.task
 def add(x, y):
     return x + y
 
-
-@app.task
-def mul(x, y):
-    return x * y
-
-
-@app.task
-def xsum(numbers):
-    return sum(numbers)
+@capp.task
+def non_certify(corpration,inspect_item):
+    search(corpration,inspect_item)
