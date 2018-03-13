@@ -3,10 +3,12 @@ from __future__ import absolute_import,unicode_literals
 import sys
 if ".." not in sys.path:
     sys.path.append("..")
-from inspect_toolkit.algorithm import search
+
 from ipcs.iapp import capp
 from ipcs.misc import unicode2str_r
 from celery.utils.log import get_task_logger
+
+from inspect_toolkit.algorithm import search
 
 logger = get_task_logger(__name__)
 
