@@ -28,7 +28,7 @@ class Local(object):
         
         self.db_protcol = 'redis'
         self.db_user = 'xudi'
-        self.db_password = ''
+        self.db_password = None
         self.db_ip = '127.0.0.1'
         self.db_port = '6379'
         self.db_number = 10

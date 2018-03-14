@@ -9,6 +9,7 @@ class RedisApi(object):
 
     def __init__(self, user = 'xudi', ip = '127.0.0.1', password = None, port = 6379, db_number = 10):
         redis_url = 'redis://{0}:{1}@{2}:{3}/{4}'.format(user,password,ip,port,db_number)
+        print redis_url
         self.iredis = redis.Redis.from_url(redis_url)
         self.prefix = 'celery-task-meta'
         
@@ -33,11 +34,22 @@ class RedisApi(object):
         pydict = json.loads(value)
         return unicode2str_r(pydict)
 
-if __name__ == '__main__':
-    from config import Local,Remote
-    proxy = Local()
+def get_handler_from_proxy(proxy):
     print proxy.db_user,proxy.db_ip,proxy.db_password,proxy.db_port,proxy.db_number
-    db = RedisApi(proxy.db_user,proxy.db_ip,proxy.db_password,proxy.db_port,proxy.db_number)
+    return proxy.db_user,proxy.db_ip,proxy.db_password,proxy.db_port,proxy.db_number
+    
+def get_local_handler():
+    from config import Local
+    proxy = Local()
+    return RedisApi(*get_handler_from_proxy(proxy))
+
+def get_remote_handler():
+    from config import Remote
+    proxy = Remote()
+    return RedisApi(*get_handler_from_proxy(proxy))
+    
+if __name__ == '__main__':
+    db = get_remote_handler()
     keys =  db.list_keys()
     if len(keys) > 0:
         print db.get_value_by_key(keys[-1])
