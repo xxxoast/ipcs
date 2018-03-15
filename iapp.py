@@ -8,8 +8,13 @@ if pkg_path not in sys.path:
     
 from celery import Celery
 from ipcs.config import Remote,Local
+from misc import get_host_ip
 
-proxy = Local()
+if get_host_ip() == '120.24.189.82':
+    proxy = Remote()
+else:
+    proxy = Local()
+    
 broker_protcol,broker_user,broker_password,broker_ip,broker_port,broker_vhost = proxy.broker_protcol,proxy.broker_user,proxy.broker_password,\
                                         proxy.broker_ip,proxy.broker_port,proxy.broker_vhost
 db_protcol,db_user,db_password,db_ip,db_port,db_number = proxy.db_protcol,proxy.db_user,proxy.db_password,\
