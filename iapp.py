@@ -17,8 +17,10 @@ db_protcol,db_user,db_password,db_ip,db_port,db_number = proxy.db_protcol,proxy.
 
 
 s_broker = '{0}://{1}:{2}@{3}:{4}/{5}'.format(broker_protcol,broker_user,broker_password,broker_ip,broker_port,broker_vhost)
-s_backend = '{0}://{1}:{2}@{3}:{4}/{5}'.format(db_protcol,db_user,db_password,db_ip,db_port,db_number)
-
+if db_password is not None:
+    s_backend = '{0}://{1}:{2}@{3}:{4}/{5}'.format(db_protcol,db_user,db_password,db_ip,db_port,db_number)
+else:
+    s_backend = '{0}://{1}@{2}:{3}/{4}'.format(db_protcol,db_user,db_ip,db_port,db_number)
 capp = Celery('ipcs', backend = s_backend, broker= s_broker, include = ['ipcs.task'])
 
 if __name__ == '__main__':

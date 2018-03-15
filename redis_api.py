@@ -8,7 +8,10 @@ from misc import unicode2str_r
 class RedisApi(object):
 
     def __init__(self, user = 'xudi', ip = '127.0.0.1', password = None, port = 6379, db_number = 10):
-        redis_url = 'redis://{0}:{1}@{2}:{3}/{4}'.format(user,password,ip,port,db_number)
+        if password is not None:
+            redis_url = 'redis://{0}:{1}@{2}:{3}/{4}'.format(user,password,ip,port,db_number)
+        else:
+            redis_url = 'redis://{0}@{1}:{2}/{3}'.format(user,ip,port,db_number)
         print redis_url
         self.iredis = redis.Redis.from_url(redis_url)
         self.prefix = 'celery-task-meta'
@@ -49,7 +52,7 @@ def get_remote_handler():
     return RedisApi(*get_handler_from_proxy(proxy))
     
 if __name__ == '__main__':
-    db = get_remote_handler()
+    db = get_local_handler()
     keys =  db.list_keys()
     if len(keys) > 0:
         print db.get_value_by_key(keys[-1])
